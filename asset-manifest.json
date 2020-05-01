@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/MovieMoa/static/js/main.58823295.chunk.js",
+    "main.js.map": "/MovieMoa/static/js/main.58823295.chunk.js.map",
+    "runtime-main.js": "/MovieMoa/static/js/runtime-main.f5dcf38a.js",
+    "runtime-main.js.map": "/MovieMoa/static/js/runtime-main.f5dcf38a.js.map",
+    "static/js/2.73c13261.chunk.js": "/MovieMoa/static/js/2.73c13261.chunk.js",
+    "static/js/2.73c13261.chunk.js.map": "/MovieMoa/static/js/2.73c13261.chunk.js.map",
+    "index.html": "/MovieMoa/index.html",
+    "precache-manifest.3702de5c7984faa44bc13635f57d9e9e.js": "/MovieMoa/precache-manifest.3702de5c7984faa44bc13635f57d9e9e.js",
+    "service-worker.js": "/MovieMoa/service-worker.js",
+    "static/js/2.73c13261.chunk.js.LICENSE.txt": "/MovieMoa/static/js/2.73c13261.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f5dcf38a.js",
+    "static/js/2.73c13261.chunk.js",
+    "static/js/main.58823295.chunk.js"
+  ]
+}

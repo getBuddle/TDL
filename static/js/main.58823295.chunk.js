@@ -1,0 +1,2 @@
+(this["webpackJsonpfront-end"]=this["webpackJsonpfront-end"]||[]).push([[0],{11:function(e,n,t){e.exports=t(21)},21:function(e,n,t){"use strict";t.r(n);var a=t(0),r=t.n(a),o=t(7),c=t.n(o),s=t(10);var u=function(){return r.a.createElement(r.a.Fragment,null,"\ud14c\uc2a4\ud2b8asd")};c.a.render(r.a.createElement(s.a,{basename:"/MovieMoa"},r.a.createElement(u,null)),document.getElementById("root"))}},[[11,1,2]]]);
+//# sourceMappingURL=main.58823295.chunk.js.map
