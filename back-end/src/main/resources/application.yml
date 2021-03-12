@@ -1,0 +1,22 @@
+server:
+  port: 5000
+  servlet:
+    context-path: /
+    
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tdl?serverTimezone=Asia/Seoul
+    username: ddevrang
+    password: tongsin144!
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update  #  create  update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # Entity(테이블)를 만들 때 변수명 그대로 필드를 만들어준다.
+      use-new-id-generator-mappings: false # JPA의 기본 넘버링 전략을 따라가지 않음
+    #show-sql: true # Console 창에 sql 관련 내용이 보임 #디버깅하기에 방해되는 경우는 주석처리
+    properties:
+      hibernate.format_sql: true # Console 창에 sql 관련 내용을 정렬하여 보여줌
