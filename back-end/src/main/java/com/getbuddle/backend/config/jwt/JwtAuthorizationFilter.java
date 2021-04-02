@@ -39,7 +39,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 		}
 		
 		String jwtHeader = request.getHeader("Authorization");
-		System.out.println("jwtHeader : "+jwtHeader);
+//		System.out.println("jwtHeader : "+jwtHeader);
 		
 		// header가 있는지, 정상적인지 확인
 		if (jwtHeader == null) {

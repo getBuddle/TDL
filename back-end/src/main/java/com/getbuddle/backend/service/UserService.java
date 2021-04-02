@@ -24,7 +24,7 @@ public class UserService {
 	@Transactional(readOnly = true)
 	public User findByUsername(String username) { 
 		User user = userRepository.findByUsername(username).orElseGet(()->{
-//			System.out.println("UserService : findByUsername() 실패");
+
 			return new User();
 		});
 		
@@ -43,7 +43,7 @@ public class UserService {
 	@Transactional(readOnly = true)
 	public User findById(int accountId) { 
 		User user = userRepository.findById(accountId).orElseGet(()->{
-//			System.out.println("UserService : findById() 실패");
+
 			return new User();
 		});
 
@@ -51,38 +51,35 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void patch(int id, Map<String, String> form) {
-		User user = userRepository.findById(id) // 영속화시킴
+	public void patch(int accountId, Map<String, String> data) {
+		User user = userRepository.findById(accountId) // 영속화시킴
 				.orElseThrow(() -> {
 					return new IllegalArgumentException("회원찾기 실패 : 아이디를 찾을 수 없습니다.");
 				});
 		
-		Set<String> keySet = form.keySet();
+		Set<String> keySet = data.keySet();
 		
 		if (keySet.contains("nickname")) {
-			String nicknameString = form.get("nickname");
+			String nicknameString = data.get("nickname");
 			user.setNickname(nicknameString);
 		}
 		
 		if (keySet.contains("email")) {
-			String emailString = form.get("email");
+			String emailString = data.get("email");
 			user.setEmail(emailString);
 		}
 		
-//		if (keySet.contains("profileImage")) {
-//			String profiileImageString = form.get("profileImage");
-//			user.setProfileImage(profiileImageString);
-//		}
+		if (keySet.contains("imageId")) {
+			String imageIdString = data.get("imageId");
+			user.setImageId(Integer.parseInt(imageIdString));
+		}
 		
-		if (keySet.contains("profileComment")) {
-			String profileCommentString = form.get("profileComment");
-			user.setProfileComment(profileCommentString);
+		if (keySet.contains("comment")) {
+			String commentString = data.get("comment");
+			user.setComment(commentString);
 		}
 
-
-		// 해당 함수 종료 시(Service가 종료될 때) 트랜잭션도 종료되는데, 이 때 더티체킹을 하면서 자동업데이트가 된다.(DB로 flush :
-		// 커밋이 된다.)
-		// 따라서 영속화된 board에 수정하고자하는 값만 set해주면 되고, 별도의 다른 명령은 필요없다.
+		// 해당 함수 종료 시(Service가 종료될 때) 트랜잭션도 종료되는데, 이 때 더티체킹을 하면서 자동업데이트가 된다.(DB로 flush : 커밋이 된다.)
 	}
 		
 	@Transactional

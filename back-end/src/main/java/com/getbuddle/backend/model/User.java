@@ -41,13 +41,10 @@ public class User {
 	@Column(nullable = false, length = 50)
 	private String email;
 	
-	@Lob
-	@Column(name = "profile_image")
-	private String profileImage;
+	private int imageId;
 	
 	@Lob
-	@Column(name = "profile_comment")
-	private String profileComment;
+	private String comment;
 	
 	@CreationTimestamp
 	private Timestamp createDate;

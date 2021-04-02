@@ -20,3 +20,7 @@ spring:
     #show-sql: true # Console 창에 sql 관련 내용이 보임 #디버깅하기에 방해되는 경우는 주석처리
     properties:
       hibernate.format_sql: true # Console 창에 sql 관련 내용을 정렬하여 보여줌
+      
+file:
+  path: C:/Users/YUN/Desktop/TDL/back-end/src/main/resources/static/images/
+
