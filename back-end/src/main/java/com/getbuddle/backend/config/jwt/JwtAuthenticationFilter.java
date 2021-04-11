@@ -21,6 +21,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.getbuddle.backend.config.auth.PrincipalDetails;
+import com.getbuddle.backend.dto.LoginDto;
 import com.getbuddle.backend.model.User;
 import com.getbuddle.backend.service.UserService;
 
@@ -110,7 +111,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		// RSA방식은 아니고, Hash암호 방식
 		String jwtToken = JWT.create()
 				.withSubject("ddevrang토큰")		// 토큰 이름
-				.withExpiresAt(new Date(System.currentTimeMillis()+(60000*60)))			// 만료 시간. 다른 사람에게 탈취되어도 위험이 덜하도록 짧게 줌
+				.withExpiresAt(new Date(System.currentTimeMillis()+(60000*600)))			// 만료 시간. 다른 사람에게 탈취되어도 위험이 덜하도록 짧게 줌
 				.withClaim("id", principalDetails.getUser().getId())											// 비공개 클레임 (키, 밸류)
 				.withClaim("username", principalDetails.getUser().getUsername())
 				.sign(Algorithm.HMAC512("ddevrang"));		// HMAC 방식은 시크릿키를 가지고 있어야 함.
@@ -118,21 +119,22 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		response.addHeader("Authorization", "Bearer "+jwtToken);		// 반드시 Bearer 뒤에 한칸을 띄워야 함.
 		
 		User userProfile = userService.findById(principalDetails.getUser().getId());
-//		System.out.println("userProfile = "+userProfile);
+		
+		LoginDto resData = new LoginDto();	
+		resData.setId(userProfile.getId());
+		resData.setUsername(userProfile.getUsername());
+		resData.setNickname(userProfile.getNickname());
+		resData.setEmail(userProfile.getEmail());
+		resData.setImageId(userProfile.getImageId());
+		resData.setComment(userProfile.getComment());
+		resData.setCreateDate(userProfile.getCreateDate());
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		String userData = objectMapper.writeValueAsString(userProfile);
-//		System.out.println("userData = "+userData);
-		
-//		Map<String, String> responseBody = new HashMap<>();
-//		
-//		responseBody.put("status", "200");
-//		responseBody.put("message", "로그인 성공");
-//		responseBody.put("data", userData);
-//		responseBody.put("Authorization", "Bearer "+jwtToken);
-//		
-//		String json = objectMapper.writeValueAsString(responseBody);
+		String userData = objectMapper.writeValueAsString(resData);
+
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
 		
 		PrintWriter out = response.getWriter();
 //		out.println(json);
